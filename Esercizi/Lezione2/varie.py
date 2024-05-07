@@ -30,4 +30,4 @@ def thirs_max(gems:list[int]) -> int:
         return gems[2]
     else:
         return gems[0]
-    
+    #
