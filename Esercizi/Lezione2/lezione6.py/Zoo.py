@@ -52,11 +52,10 @@ class Zoo:
                 print("Animali:")
                 for animal in fence.animals:
                     print(
-                        f"ID Animale: {animal.id}, Nome: {animal.name}, Specie: {animal.species}, Età: {animal.age}, Altezza: {animal.height}, Larghezza: {animal.width}, Habitat preferito: {animal.preferred_habitat}, Salute: {animal.health}")
-
+                        f"( Nome: {animal.name}, Specie: {animal.species}, Età: {animal.age}, Altezza: {animal.height}, Larghezza: {animal.width}, Habitat preferito: {animal.preferred_habitat}, Salute: {animal.health}")
+                    
 class Animal:
-    def __init__(self, id, name, species, age, height, width, preferred_habitat):
-        self.id = id
+    def __init__(self, name, species, age, height, width, preferred_habitat):
         self.name = name
         self.species = species
         self.age = age
