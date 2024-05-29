@@ -23,7 +23,7 @@ def wod_frequenty(text:str,stopwords:list[str]) -> dict[str,int]:
     
     return dict(result)
 
-#esrcizio gioielli veifica
+#esrcizio gioielli verifica
 def thirs_max(gems:list[int]) -> int:
     gems = sorted(list(set(gems)), reversed = True)
     if len(gems) >= 3:
