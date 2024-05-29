@@ -1,4 +1,4 @@
-import random   
+import random  
 def movimento_tartaruga():
     i = random.randint(1, 10)
     if 1 <= i <= 5:
@@ -20,7 +20,7 @@ def movimento_lepre():
     else:
         return -2
 
-def visualizza_posizioni(tartaruga, lepre):
+def visualizza_posizioni(tartaruga: int, lepre: int):
     for i in range(1, 71):
         if i == tartaruga == lepre:
             print('OUCH!!!', end='')
@@ -48,3 +48,4 @@ def gara():
             print("HARE WINS || YUCH!!!")
             break
 gara()
+#scritto con lo strict
