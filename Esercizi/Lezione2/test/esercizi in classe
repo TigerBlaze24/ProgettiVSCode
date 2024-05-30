@@ -1,0 +1,21 @@
+class Film: 
+          def __init__(self, titolo :str, durata :int):
+              self.titolo = titolo 
+              self.durata = durata  
+class Sala: 
+    def __init__(self, filmprogrammazione:str,postitotali:int,postiprenotati:int): 
+        self.filmprigrammazione =filmprogrammazione   
+        self.postitotali =postitotali
+        self.postiprenotati = postiprenotati    
+        
+    def prenota_posti(self, num_posti:int) -> str:
+        postidisponibili :int = self.postitotali - self.postiprenotati 
+        if postiprenotati <= postidisponibili: 
+           self.postiprenotati += num_posti
+        return "conferma" or "errore"
+    def posti_disponibili():
+        return int
+         
+    
+     
+
