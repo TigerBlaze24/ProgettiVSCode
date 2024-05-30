@@ -10,11 +10,13 @@ class Sala:
         
     def prenota_posti(self, num_posti:int) -> str:
         postidisponibili :int = self.postitotali - self.postiprenotati 
-        if postiprenotati <= postidisponibili: 
+        if self.postiprenotati <= postidisponibili: 
            self.postiprenotati += num_posti
         return "conferma" or "errore"
-    def posti_disponibili():
-        return int
+    def posti_disponibili(self) -> int:
+        return self.postitotali - self.postiprenotati
+class Cinema:
+     
          
     
      
