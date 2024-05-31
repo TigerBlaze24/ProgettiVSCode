@@ -3,17 +3,11 @@ class Zoo:
         self.fences = fences
         self.zoo_keepers = zoo_keepers
         self.animal_counter = 0  # Aggiungi un contatore per gli animali
-
-    def add_animal(self, animal, fence):
-        if animal.preferred_habitat == fence.habitat and animal.height * animal.width <= fence.area:
-            fence.animals.append(animal)
-            fence.area -= animal.height * animal.width
-            self.animal_counter += 1  # Incrementa il contatore quando aggiungi un animale
-
     def remove_animal(self, animal, fence):
         if animal in fence.animals:
             fence.animals.remove(animal)
-            fence.area += animal.height * animal.width
+            fence.area += animal.height * animal.width  
+
 
     def add_zoo_keeper(self):
         nome = input("Inserisci il nome del guardiano: ")
@@ -77,7 +71,14 @@ class ZooKeeper:
     def __init__(self, nome, cognome, id):
         self.nome = nome
         self.cognome = cognome
-        self.id = id
+        self.id = id    
+
+    def add_animal(self, animal, fence):
+        if animal.preferred_habitat == fence.habitat and animal.height * animal.width <= fence.area:
+            fence.animals.append(animal)
+            fence.area -= animal.height * animal.width
+            #self.animal_counter += 1  # Incrementa il contatore quando aggiungi un animale
+
 
     def feed(self, animal, fence):
         if animal.height * animal.width * 1.02 <= fence.area:
@@ -93,10 +94,12 @@ class ZooKeeper:
         else:
             return occupied_area
 
-ZooKeeper = [ZooKeeper("Teo", "Maggi", 123)]
-animal = Animal("Alex", "leone", 20, 2.00, 4.00, 42, "Savana")
-fence = Fence(323, 232332, 35, "Savana")
-zoo = Zoo([], ZooKeeper)  # Crea un'istanza della classe Zoo
-zoo.add_animal(animal, fence)  # Aggiungi l'animale al recinto
-zoo.fences.append(fence)  # Aggiungi il recinto allo zoo
-zoo.describe_zoo()  # Ora puoi chiamare describe_zoo()
+
+if __name__ == "__main__":
+    ZooKeeper = ZooKeeper("Teo", "Maggi", 123)
+    animal = Animal("Alex", "leone", 20, 2.00, 4.00, 42, "Savana")
+    fence = Fence(323, 232332, 35, "Savana")
+    zoo = Zoo([], ZooKeeper)  # Crea un'istanza della classe Zoo
+    zoo.add_animal(animal, fence)  # Aggiungi l'animale al recinto
+    zoo.fences.append(fence)  # Aggiungi il recinto allo zoo
+    zoo.describe_zoo()  # Ora puoi chiamare describe_zoo()
