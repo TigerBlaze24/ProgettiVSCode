@@ -17,13 +17,20 @@ class TestZoo(TestCase):
 
         self.assertEqual(result,0,message)
 
-    def test_animal_fuga(self):
+    def test_animal_pesoanimale(self):
         self.zookeeper_1.add_animal(self.animal_1, self.fence_1)
         result : int = len(self.fence_1.animals)
-        message :str = f"errorfunction"
+        message :str = f" non è in linea"
 
         self.assertEqual(result,0,message)
         
+    def test_animal_habitat(self):
+        self.zookeeper_1.add_animal(self.animal_1, self.fence_1)
+        result : int = len(self.fence_1.animals)
+        message :str = f" non è l'abitat giusto"
+
+
+        self.assertEqual(result,0,message)
     def test_1(self):
         pass
 
