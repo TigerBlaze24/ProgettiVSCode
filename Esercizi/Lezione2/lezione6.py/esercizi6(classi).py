@@ -132,3 +132,183 @@ def aggrega_voti(voti: dict) -> dict[str:list[int]]:
             aggrega_vot[nome] = [voto]
     return aggrega_vot
 print(aggrega_voti([{'nome': 'Alice', 'voto': 90}, {'nome': 'Bob', 'voto': 75}, {'nome': 'Alice', 'voto': 85}]))
+#########################
+#nuovi esercizi classi:
+ 
+class Film:
+    def __init__(self, titolo: str, durata: int):
+        self.titolo = titolo
+        self.durata = durata
+
+
+class Sala:
+    def __init__(self, filmprogrammazione: Film, postitotali: int, postiprenotati: int):
+        self.filmprogrammazione = filmprogrammazione
+        self.postitotali = postitotali
+        self.postiprenotati = postiprenotati
+
+    def prenota_posti(self, num_posti: int) -> str:
+        postidisponibili: int = self.postitotali - self.postiprenotati
+        if self.postiprenotati <= postidisponibili:
+            self.postiprenotati += num_posti
+            return "conferma" or "errore"
+
+    def posti_disponibili(self) -> int:
+        return self.postitotali - self.postiprenotati
+
+
+class Cinema:
+    def __init__(self):
+        self.Sale = []
+
+    def aggiungi_Sala(self, Sala):
+        self.Sale.append(Sala)
+
+    def prenota_film(self, titolo_film, num_posti):
+        for i, Sala in enumerate(self.Sale):
+            if Sala.filmprogrammazione.titolo == titolo_film:
+                risultato_prenotazione = Sala.prenota_posti(num_posti)
+                if risultato_prenotazione == "conferma":
+                    return f"{titolo_film} Sala {i+1}"
+                else:
+                    return "Errore nella prenotazione."
+        return "Film non trovato."
+
+cinema = Cinema()
+film1 = Film("Star Wars", 120)
+Sala1 = Sala(film1, 50, 5)
+cinema.aggiungi_Sala(Sala1)
+print(cinema.prenota_film("Star Wars", 50))
+
+#esercizio del magazzino:
+
+class Prodotto:
+    def __init__(self, nome: str, quantita: int):
+        self.nome = nome
+        self.quantita = quantita
+
+class Magazzino:
+    def __init__(self):
+        self.prodotti = {}
+
+    def aggiungi_prodotto(self, Prodotto):
+        if Prodotto.nome in self.prodotti:
+            self.prodotti[Prodotto.nome].quantita += Prodotto.quantita
+        else:
+            self.prodotti[Prodotto.nome] = Prodotto
+
+    def cerca_prodotto(self, nome: str):
+        if nome in self.prodotti:
+            return self.prodotti[nome]
+        else:
+            return "Prodotto inesistente"
+
+    def verifica_disponibilita(self, nome: str):
+        prodotto = self.cerca_prodotto(nome)
+        if prodotto:
+            return f"Il prodotto è disponibile."
+        else:
+            return "Il prodotto non è disponibile"
+
+magazzino = Magazzino()
+prodotto1 = Prodotto("Caffé", 100)
+prodotto2 = Prodotto("Zucchero", 50)
+magazzino.aggiungi_prodotto(prodotto1)
+magazzino.aggiungi_prodotto(prodotto2)
+print(magazzino.verifica_disponibilita("Caffé"))
+
+#esercizioBiblioteca:
+
+class Libro:
+    def __init__(self, titolo: str, autore: str):
+        self.titolo = titolo
+        self.autore = autore
+        self.prestito = "Non prestato"
+
+    def presta(self):
+        if not self.prestito:
+            self.prestito = "Prestato"
+            return "Il libro è stato prestato."
+        else:
+            return "Il libro è già stato prestato."
+
+    def restuisci(self):
+        if self.prestito:
+            self.prestito = "Non prestato"
+            return "Il libro è stato restituito"
+
+class Biblioteca:
+    def __init__(self):
+        self.catalogo = []
+
+    def aggiungi_libro(self, libro):
+        self.catalogo.append(libro)
+        return "Il libro è aggiunto."
+
+    def presta_libro(self, titolo):
+        for libro in self.catalogo:
+            if libro.titolo == titolo:
+                return libro.presta
+        return "Il prestito è andato a buon fine."
+
+    def mostra_libri_disponibili(self):
+        libri_disponibili = [libro.titolo for libro in self.catalogo if not libro.prestito]
+        if libri_disponibili:
+            return libri_disponibili
+        else:
+            return "Non ci sono libri disponibili"
+
+biblioteca = Biblioteca()
+
+libro1 = Libro("Il piccolo principe", "Pietro Smith")
+
+print(biblioteca.aggiungi_libro(libro1))
+
+print(biblioteca.presta_libro(libro1))
+
+print(libro1.restuisci())
+
+print(biblioteca.mostra_libri_disponibili())
+
+
+#eserciziocatalogofilm:
+
+class MovieCatalog:
+    def __init__(self):
+        self.catalog = {}
+
+    def add_movie(self, director_name, movies):
+        if director_name not in self.catalog:
+            self.catalog[director_name] = []
+        self.catalog[director_name].extend(movies)
+        return "Film aggiunti al catalogo."
+
+    def remove_movie(self, director_name, movie_name):
+        if director_name in self.catalog and movie_name in self.catalog[director_name]:
+            self.catalog[director_name].remove(movie_name)
+            if not self.catalog[director_name]:
+                del self.catalog[director_name]
+                return "Rimosso il regista"
+        else:
+            return  "Il film non è nel catalogo"
+
+    def list_directors(self):
+        return list(self.catalog.keys())
+
+    def get_movies_by_director(self, director_name):
+        if director_name in self.catalog:
+            return self.catalog[director_name]
+        else:
+            return "Nessun film trovato per questo regista."
+
+    def search_movies_by_title(self, title):
+        results = {}
+        for director, movies in self.catalog.items():
+            for movie in movies:
+                if title.lower() in movie.lower():
+                    if director not in results:
+                        results[director] = []
+                    results[director].append((movie))
+        return results if results else "Nessun film trovato con questo titolo."
+
+#Per finire l'esercizio scrivere il dizionario e la print
