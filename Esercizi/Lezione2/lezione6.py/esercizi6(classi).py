@@ -312,3 +312,171 @@ class MovieCatalog:
         return results if results else "Nessun film trovato con questo titolo."
 
 #Per finire l'esercizio scrivere il dizionario e la print
+
+
+
+#esercizi lez8 p.Giorgi 
+from abc import ABC, abstractmethod
+import math
+
+
+# Creazione della classe astratta Shape
+class Shape(ABC):
+
+    # Metodo astratto area
+    @abstractmethod
+    def area(self):
+        pass
+
+    # Metodo astratto perimetro
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+# Creazione della sottoclasse Circle
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    # Implementazione del metodo area per Circle
+    def area(self):
+        return math.pi * (self.radius ** 2)
+
+    # Implementazione del metodo perimetro per Circle
+    def perimeter(self):
+        return 2 * math.pi * self.radius
+
+# Creazione della sottoclasse Rectangle
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    # Implementazione del metodo area per Rectangle
+    def area(self):
+        return self.width * self.height
+
+    # Implementazione del metodo perimetro per Rectangle
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+class MathOperations:
+    # Metodo statico per l'addizione
+    @staticmethod
+    def add(num1, num2):
+        return num1 + num2
+
+
+    # Metodo statico per la moltiplicazione
+    @staticmethod
+    def multiply(num1, num2):
+        return num1 * num2
+
+# Test dei metodi statici
+print(MathOperations.add(5,3)) # Stampa: 8
+print(MathOperations.multiply(5, 3)) # Stampa: 15
+
+#eserciziosistema università 
+
+from abc import ABC, abstractmethod
+
+# Classe astratta Person
+class Person(ABC):
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # Metodo astratto get_role
+    @abstractmethod
+    def get_role(self):
+        pass
+
+    # Metodo __str__
+    def __str__(self):
+        return f'{self.name}, {self.age} anni'
+
+# Sottoclasse Student
+class Student(Person):
+    def __init__(self, name, age, student_id):
+        super().__init__(name, age)
+        self.student_id = student_id
+        self.courses = []
+
+    # Metodo per iscriversi a un corso
+    def enroll(self, course):
+        self.courses.append(course)
+        course.add_student(self)
+
+    # Implementazione del metodo astratto get_role
+    def get_role(self):
+        return 'Studente'
+
+# Sottoclasse Professor
+class Professor(Person):
+    def __init__(self, name, age, professor_id, department):
+        super().__init__(name, age)
+        self.professor_id = professor_id
+        self.department = department
+        self.courses = []
+
+    # Metodo per assegnare un corso
+    def assign_to_course(self, course):
+        self.courses.append(course)
+        course.set_professor(self)
+
+    # Implementazione del metodo astratto get_role
+    def get_role(self):
+        return 'Professore'
+
+# Classe Course
+class Course:
+    def __init__(self, course_name, course_code):
+        self.course_name = course_name
+        self.course_code = course_code
+        self.students = []
+        self.professor = None
+
+    # Metodo per aggiungere uno studente
+    def add_student(self, student):
+        self.students.append(student)
+
+    # Metodo per assegnare un professore
+    def set_professor(self, professor):
+        self.professor = professor
+
+    # Metodo __str__
+    def __str__(self):
+        return f'{self.course_name} ({self.course_code})'
+
+# Classe Department
+class Department:
+    def __init__(self, department_name):
+        self.department_name = department_name
+        self.courses = []
+        self.professor = []
+
+    # Metodo per aggiungere un corso
+    def add_course(self, course):
+        self.courses.append(course)
+
+    # Metodo per aggiungere un professore
+    def add_professor(self, professor):
+        self.professor.append(professor)
+
+    # Metodo __str__
+    def __str__(self):
+        return  self.department_name
+
+# Classe University
+class University:
+    def __init__(self, name):
+        self.name = name
+        self.departments = []
+        self.students = []
+
+    # Metodo per aggiungere un dipartimento
+    def add_student(self, student):
+        self.students.append(student)
+
+    # Metodo __str__
+    def __str__(self):
+        return self.name
