@@ -61,6 +61,8 @@ linked_list.append(2)
 linked_list.append(2)
 linked_list.append(1)
 print(linked_list.is_palindrome())  # Output: True
+#####################################################################
+class ContextManager:
 
 
 
