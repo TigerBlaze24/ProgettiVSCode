@@ -77,15 +77,15 @@ Metodi:
 - aggiungiValutazione(self, voto): Aggiunge una valutazione alla lista delle recensioni se è valida (tra 1 e 5).
 - getMedia(self): Calcola e restituisce la media delle valutazioni.
 - getRate(self): Restituisce una stringa che descrive il giudizio medio basato sulla media delle valutazioni, ovvero mostra "Terribile" se il voto medio si avvicina a 1, "Brutto" se il voto medio si avvicina a 2, "Normale" se il voto medio si avvicina a 3, "Bello" se il voto medio si avvicina a 4, "Grandioso" se il voto medio si avvicina a 5.
-- ratePercentage(self, voto): Calcola e restituisce la percentuale di un voto specifico nelle recensioni.
+- ratePercentage(self, voto): definire un metodo che calcola e restituisce la percentuale di un voto specifico nelle recensioni.
 - recensione(self): Mostra un riassunto delle recensioni e delle valutazioni del media, stampando il titolo, il voto medio, il giudizio e le percentuali di ciascun voto.
 """
 class Media:
- def __init__ ( self,tile:str,reviews:list,media:int,voto:int):
+ def __init__ ( self,tile:str,reviews:list,media:float,voto:int):
     self.title = str
     self.reviews = list
     self.voto= int
-    self.media = int
+    self.media = float
  def set_title(self,imposttitle):
     self.title= imposttitle
     return imposttitle
@@ -109,8 +109,30 @@ def get_rate(self,rate):
      return"bello"
     elif rate==5:   
        return"grandioso"       
-def percentage(self,voto :int):
-#da finire a casa
+def percentage(self,reviews,voto:int):
+    reviews:list
+    voto:int
+    tot_reviews=len(reviews)
+    count_voto= reviews.coun_voto
+    percentage=(count_voto/tot_reviews)*100
+    return percentage
+def recensione(self):
+ #definisci l'ultimo metodo
+ 
+ 
+reviews=[1,2,3,4,5]
+voto=1
+voto=2
+voto=3
+voto=4
+voto=5
+
+
+
+
+
+   
+#da finire a casa definire gli ultimi due metodi  ela lista voti e parametro 2(printa)
    
    
      
