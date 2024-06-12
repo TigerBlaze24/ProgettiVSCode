@@ -476,7 +476,137 @@ class University:
     # Metodo per aggiungere un dipartimento
     def add_student(self, student):
         self.students.append(student)
-
     # Metodo __str__
-    def __str__(self):
-        return self.name
+    def __str__(self):  
+        return self.name    
+###########ESERCIZIODELLERICETTE:####################################################################################################################
+class RecipeManager:
+    def __init__(self):
+        self.recipes: dict={}
+       
+    def create_recipe(self, name: str, ingredients: list):
+        if name not in self.recipes:
+            self.recipes[name]=ingredients
+        return self.recipes
+   
+    def add_ingredient(self, recipe_name:str ,ingredient: str):
+        if recipe_name in self.recipes:
+            if ingredient not in self.recipes[recipe_name]:
+                self.recipes[recipe_name].append(ingredient)
+                return self.recipes
+   
+    def remove_ingredient(self, recipe_name: str, ingredient: str):
+        if recipe_name in self.recipes:
+            if ingredient in self.recipes[recipe_name]:
+                self.recipes[recipe_name].remove(ingredient)
+                return self.recipes
+               
+               
+    def update_ingredient(self, recipe_name, old_ingredient, new_ingredient):
+        if recipe_name in self.recipes:
+            if old_ingredient in self.recipes[recipe_name]:
+                updated_recipe = []
+                for ingredient in self.recipes[recipe_name]:
+                    if ingredient == old_ingredient:
+                        updated_recipe.append(new_ingredient)
+                    else:
+                        updated_recipe.append(ingredient)
+                self.recipes[recipe_name] = updated_recipe
+                return self.recipes
+            else:
+                print('Errore: Ingrediente non presente')
+        else:
+            print('Errore: Ricetta non presente')
+
+               
+    def list_recipes(self):
+        lista_ricette=[]
+        for k in self.recipes.keys():
+            lista_ricette.append(k)
+        return lista_ricette
+       
+    def list_ingredients(self, recipes_name):
+        if recipes_name in self.recipes:
+            return self.recipes[recipes_name]
+        else:
+            print('errore la ricetta non esiste')
+   
+    def search_recipe_by_ingredient(self, ingredient):
+        new_dict={}
+        for k,v in self.recipes.items():
+            if ingredient in self.recipes[k]:
+                new_dict[k]=v
+            return new_dict
+            
+    
+    
+######################esercizio animali##############à
+class Specie:
+    def __init__(self, nome, popolazione_iniziale, tasso_crescita):
+        self.nome = nome
+        self.popolazione = popolazione_iniziale
+        self.tasso_crescita = tasso_crescita
+
+    def cresci(self):
+        # Aggiorna la popolazione per l'anno successivo
+        self.popolazione = int(self.popolazione *  (1 + self.tasso_crescita / 100))
+
+    def anni_per_superare(self, altra_specie):
+        anni = 0
+        # Continua ad aggiornare la popolazione finché la popolazione di questa specie non supera quella dell'altra
+        while self.popolazione <= altra_specie.popolazione and anni < 1000:
+            self.cresci()
+            altra_specie.cresci()
+            anni += 1
+        return anni
+
+    def getDensita(self, area_kmq):
+        anni = 0
+        # Continua ad aggiornare la popolazione finché la densità non raggiunge 1 individuo per km²
+        while self.popolazione / area_kmq < 1 and anni < 1000:
+            self.cresci()
+            anni += 1
+        return anni
+
+
+class BufaloKlingon(Specie):
+    def __init__(self, popolazione_iniziale, tasso_crescita):
+        # Inizializza il nome della specie
+        super().__init__("Bufalo Klingon", popolazione_iniziale, tasso_crescita)
+
+
+class Elefante(Specie):
+    def __init__(self, popolazione_iniziale, tasso_crescita):
+        # Inizializza il nome della specie
+        super().__init__("Elefante", popolazione_iniziale, tasso_crescita)
+
+##eserciziocontatore##
+class Contatore:
+    # Metodo costruttore che inizializza il conteggio a 0
+    def __init__(self):
+        self.conteggio = 0
+
+    # Metodo per impostare il conteggio a 0
+    def setZero(self):
+        self.conteggio = 0
+
+    # Metodo per incrementare il conteggio di 1
+    def add1(self):
+        self.conteggio += 1
+
+    # Metodo per decrementare il conteggio di 1, con controllo per non andare sotto 0
+    def sub1(self):
+        if self.conteggio > 0:
+            self.conteggio -= 1
+        else:
+            # Stampa un messaggio di errore se il conteggio è già 0
+            print("Non è possibile eseguire la sottrazione")
+
+    # Metodo per ottenere il valore corrente del conteggio
+    def get(self):
+        return self.conteggio
+
+    # Metodo per mostrare il valore corrente del conteggio
+    def mostra(self):
+        print(f"Conteggio attuale: {self.conteggio}")
+

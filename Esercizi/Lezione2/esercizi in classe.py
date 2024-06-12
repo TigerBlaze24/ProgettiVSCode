@@ -117,9 +117,7 @@ def percentage(self,reviews,voto:int):
     percentage=(count_voto/tot_reviews)*100
     return percentage
 def recensione(self):
- #definisci l'ultimo metodo
- 
- 
+ #definisci l'ultimo metodo 
 reviews=[1,2,3,4,5]
 voto=1
 voto=2
