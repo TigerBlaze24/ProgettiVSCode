@@ -609,4 +609,236 @@ class Contatore:
     # Metodo per mostrare il valore corrente del conteggio
     def mostra(self):
         print(f"Conteggio attuale: {self.conteggio}")
+#ultimi esercizi cascio:
+#Esempio di utilizzo del DatabaseDate
+if name == "__main":
+    db = DatabaseDate()
 
+    try:
+        db.aggiungi_data("01.01.2023")
+        db.aggiungi_data("15.06.2023")
+        db.aggiungi_data("31.12.2023")
+        print("Date nel database:", db.dates)
+
+        db.elimina_data("15.06.2023")
+        print("Date nel database dopo eliminazione:", db.dates)
+
+        db.modifica_data("01.01.2023", "01.01.2024")
+        print("Date nel database dopo modifica:", db.dates)
+
+        risultato_query = db.query_data("31.12.2023")
+        print("Risultato query:", risultato_query)
+
+    except ValueError as e:
+        print(f"Errore: {e}")
+#Esercizio 3
+import unittest
+
+#Definizione dell'eccezione personalizzata
+class FormulaError(Exception):
+    pass
+
+#Funzione per eseguire il calcolo
+def calculate(input_str):
+    # Split dell'input in una lista di elementi
+    elements = input_str.split()
+
+#Controllo se ci sono esattamente 3 elementi
+    if len(elements) != 3:
+        raise FormulaError("La formula deve essere composta da un numero, un operatore (+ o -), e un altro numero.")
+
+#Estrazione degli elementi
+    num1_str, operator, num2_str = elements
+
+#Controllo dell'operatore
+    if operator not in ('+', '-'):
+        raise FormulaError("L'operatore supportato è solo + o -.")
+
+#Tentativo di conversione dei numeri in virgola mobile
+    try:
+        num1 = float(num1_str)
+        num2 = float(num2_str)
+    except ValueError:
+        raise FormulaError("I numeri devono essere numerici e separati da spazi.")
+
+#Esecuzione del calcolo in base all'operatore
+    if operator == '+':
+        result = num1 + num2
+    elif operator == '-':
+        result = num1 - num2
+
+#Restituzione del risultato
+    return result
+
+#Test case usando unittest per verificare diverse casistiche
+class TestCalculate(unittest.TestCase):
+
+    def test_valid_input_addition(self):
+        result = calculate("5 + 3")
+        self.assertEqual(result, 8)
+
+    def test_valid_input_subtraction(self):
+        result = calculate("10 - 4")
+        self.assertEqual(result, 6)
+
+    def test_invalid_number_of_elements(self):
+        with self.assertRaises(FormulaError):
+            calculate("5 + 3 + 2")
+
+    def test_invalid_operator(self):
+        with self.assertRaises(FormulaError):
+            calculate("5 * 3")
+
+    def test_invalid_number_format(self):
+        with self.assertRaises(FormulaError):
+            calculate("5 + hello") 
+def testmixedvalidity(self):
+        with self.assertRaises(FormulaError):
+            calculate("5 +")   
+def testfloatnumbers(self):
+        result = calculate("3.5 + 2.5")
+        self.assertEqual(result, 6.0)
+
+def test_negative_numbers(self):
+        result = calculate("5 - 8")
+        self.assertEqual(result, -3)
+def test_zero_result(self):
+        result = calculate("5 - 5")
+        self.assertEqual(result, 0)
+
+def test_large_numbers(self):
+        result = calculate("1000000 + 500000")
+        self.assertEqual(result, 1500000)
+
+#Esecuzione dei test
+if __name == '__main':
+    unittest.main()
+
+#Ciclo per eseguire il calcolatore interattivo
+while True:
+    try:
+        user_input = input("Inserisci una formula (o 'quit' per uscire): ")
+
+        if user_input.lower() == 'quit':
+            break
+
+        result = calculate(user_input)
+        print(f"Risultato: {result}")
+
+    except FormulaError as e:
+        print(f"Errore: {e}")
+E infine l'esercizio 4 
+Definizione di eccezioni personalizzate
+class FractionError(Exception):
+    pass
+
+
+class ZeroDenominatorError(FractionError):
+    def init(self):
+        super().init("Il denominatore non può essere zero.")
+
+
+class UnsupportedOperationError(FractionError):
+    def init(self, operation):
+        super().init(f"L'operazione '{operation}' non è supportata.")
+
+
+class Fraction:
+    def init(self, numerator, denominator):
+        try:
+            if denominator == 0:
+                raise ZeroDenominatorError()
+            self.numerator = numerator
+            self.denominator = denominator
+            self.simplify()
+        except ZeroDivisionError:
+            raise ZeroDenominatorError()
+        except Exception as e:
+            raise FractionError(f"Errore durante la creazione della frazione: {str(e)}")
+
+    def simplify(self):
+        try:
+            gcd_val = self.gcd(self.numerator, self.denominator)
+            self.numerator //= gcd_val
+            self.denominator //= gcd_val
+            # Assicurarsi che il denominatore sia positivo per convenzione
+            if self.denominator < 0:
+                self.numerator = -self.numerator
+                self.denominator = -self.denominator
+        except Exception as e:
+            raise FractionError(f"Errore durante la semplificazione della frazione: {str(e)}")
+
+    @staticmethod
+    def gcd(a, b):
+        while b:
+            a, b = b, a % b
+        return abs(a)
+def str(self):
+        return f"{self.numerator}/{self.denominator}"
+
+def eq(self, other):
+        if not isinstance(other, Fraction):
+            return False
+        return self.numerator == other.numerator and self.denominator == other.denominator
+
+def add(self, other):
+        if not isinstance(other, Fraction):
+            raise UnsupportedOperationError('+')
+        try:
+            new_numerator = self.numerator * other.denominator + other.numerator * self.denominator
+            new_denominator = self.denominator * other.denominator
+            return Fraction(new_numerator, new_denominator)
+        except Exception as e:
+            raise FractionError(f"Errore durante l'addizione delle frazioni: {str(e)}")
+
+def sub(self, other):
+        if not isinstance(other, Fraction):
+            raise UnsupportedOperationError('-')
+        try:
+            new_numerator = self.numerator * other.denominator - other.numerator * self.denominator
+            new_denominator = self.denominator * other.denominator
+            return Fraction(new_numerator, new_denominator)
+        except Exception as e:
+            raise FractionError(f"Errore durante la sottrazione delle frazioni: {str(e)}")
+
+def mul(self, other):
+        if not isinstance(other, Fraction):
+            raise UnsupportedOperationError('')
+        try:
+            new_numerator = self.numerator other.numerator
+            new_denominator = self.denominator * other.denominator
+            return Fraction(new_numerator, new_denominator)
+        except Exception as e:
+            raise FractionError(f"Errore durante la moltiplicazione delle frazioni: {str(e)}")
+def truediv(self, other):
+        if not isinstance(other, Fraction):
+            raise UnsupportedOperationError('/')
+        try:
+            if other.numerator == 0:
+                raise ZeroDenominatorError()
+            newnumerator = self.numerator * other.denominator
+            newdenominator = self.denominator * other.numerator
+            return Fraction(newnumerator, newdenominator)
+        except ZeroDivisionError:
+            raise ZeroDenominatorError()
+        except Exception as e:
+            raise FractionError(f"Errore durante la divisione delle frazioni: {str(e)}")
+
+
+#Test di esempio
+if __name == "__main":
+    try:
+        f1 = Fraction(3, 4)
+        f2 = Fraction(1, 2)
+
+        print(f"f1 = {f1}")
+        print(f"f2 = {f2}")
+
+        print(f"f1 + f2 = {f1 + f2}")
+        print(f"f1 - f2 = {f1 - f2}")
+        print(f"f1 * f2 = {f1 * f2}")
+        print(f"f1 / f2 = {f1 / f2}")
+
+        print(f"f1 == f2: {f1 == f2}")
+    except FractionError as e:
+        print(f"Errore: {e}")
