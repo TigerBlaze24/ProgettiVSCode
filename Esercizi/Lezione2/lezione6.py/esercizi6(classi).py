@@ -727,8 +727,8 @@ while True:
 
     except FormulaError as e:
         print(f"Errore: {e}")
-E infine l'esercizio 4 
-Definizione di eccezioni personalizzate
+#esercizio 4 
+#Definizione di eccezioni personalizzate
 class FractionError(Exception):
     pass
 
@@ -805,7 +805,7 @@ def mul(self, other):
         if not isinstance(other, Fraction):
             raise UnsupportedOperationError('')
         try:
-            new_numerator = self.numerator other.numerator
+            new_numerator = self.numerator *other.numerator
             new_denominator = self.denominator * other.denominator
             return Fraction(new_numerator, new_denominator)
         except Exception as e:
