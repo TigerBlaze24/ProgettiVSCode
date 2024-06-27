@@ -1,5 +1,5 @@
 class Film:
-    def init(self, id, title):
+    def __init__(self, id, title):
         self.id = id
         self.title = title
 
@@ -20,7 +20,7 @@ class Film:
 
 
 class Azione(Film):
-    def init(self, id, title):
+    def __init__(self, id, title):
         super().init(id, title)
         self.genere = "Azione"
         self.penale = 3.0
@@ -36,7 +36,7 @@ class Azione(Film):
 
 
 class Commedia(Film):
-    def init(self, id, title):
+    def __init__(self, id, title):
         super().init(id, title)
         self.genere = "Commedia"
         self.penale = 2.5
@@ -52,7 +52,7 @@ class Commedia(Film):
 
 
 class Drama(Film):
-    def init(self, id, title):
+    def __init__(self, id, title):
         super().init(id, title)
         self.genere = "Drama"
         self.penale = 2.0
@@ -65,12 +65,10 @@ class Drama(Film):
 
     def calcolaPenaleRitardo(self, days):
         return self.penale * days
-Mamma mia i trattini bassi li ha copiati malissimo
-from film import Azione, Commedia, Drama
 
 
 class Noleggio:
-    def init(self, film_list):
+    def __init__(self, film_list):
         self.film_list = film_list
         self.rented_film = {}
 
@@ -126,12 +124,6 @@ def printRentMovies(self, clientID):
                 print(f"{film.getTitle()} - {genre} -")
         else:
             print(f"Il cliente {clientID} non ha noleggiato alcun film.")
-Questo è il secondo file, noleggio
-import unittest
-from contextlib import redirect_stdout
-from io import StringIO
-from film import Film, Azione, Commedia, Drama
-from noleggio import Noleggio
 
 
 class TestFilm(unittest.TestCase):
