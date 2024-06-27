@@ -1,6 +1,7 @@
-def decorator(func):    
+def get_time(func):    
     def wrapper(): 
         import time 
+        import random 
 
         start= time.time()  
         func()  
@@ -9,10 +10,11 @@ def decorator(func):
         print(f"{elapsed_time=}")  
 
     return wrapper 
-
+@get_time
 def say_hello()   -> None:  
     print(f"hello, Mary")   
 
-say_hello=decorator(say_hello)  
+say_hello=get_time(say_hello)  
 
 say_hello()
+
