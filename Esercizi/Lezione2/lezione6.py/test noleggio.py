@@ -1,8 +1,7 @@
 import unittest
 from contextlib import redirect_stdout  
 from io import StringIO 
-from film import Film,Azione,Commedia,Drama 
-from esercizio noleggio import  test noleggio
+from .esercizio_noleggio import  Noleggio, Film,Azione,Commedia,Drama 
 class TestFilm(unittest.TestCase):
     def setUp(self):
         # Creazione di una lista di film per il test
@@ -54,7 +53,7 @@ def testcalcolaPenaleRitardo(self):
         film = Drama(3, "Film Drama")
         self.assertEqual(film.calcolaPenaleRitardo(2), 4.0)
 
-    def testprintMovies(self):
+def testprintMovies(self):
         expectedoutput = [
             "Film Azione 1 - Azione -",
             "Film Azione 2 - Azione -",
@@ -68,13 +67,13 @@ def testcalcolaPenaleRitardo(self):
             "Film Drama 1 - Drama -"
         ]
 
-        with StringIO() as buffer, redirectstdout(buffer):
+        with StringIO() as buffer, redirect_stdout(buffer):
             self.video_store.printMovies()
             output = buffer.getvalue().strip().split('\n')
 
-        self.assertListEqual(output, expected_output)
+        self.assertListEqual(output, expectedoutput)
 
-    def test_printRentMovies(self):
+def test_printRentMovies(self):
         clientID = 1
         film_to_rent = self.film_list[0]
         self.video_store.rentAMovie(film_to_rent, clientID)
@@ -91,5 +90,5 @@ def testcalcolaPenaleRitardo(self):
         self.assertListEqual(output, expected_output)
 
 
-if __name == '__main':
+if __name__ == '__main__':
     unittest.main()
