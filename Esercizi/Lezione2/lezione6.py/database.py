@@ -19,7 +19,7 @@ class DatabaseDate:
     ValueError: Se la data è già presente nel database"""   
         if data_str in self.dates:
               raise ValueError("Data già presente nel database")
-          self.dates[data_str] = True
+        self.dates[data_str] = True
 
 
     def elimina_data(self, data_str):
@@ -38,7 +38,7 @@ class DatabaseDate:
     ValueError: Se la data non è presente nel database"""   
         if data_str not in self.dates:
               raise ValueError("Data non presente nel database")    
-        def self.dates[data_str]
+        def selfdates
 
 
     def modifica_data(self, data_str_vecchia, data_str_nuova):
