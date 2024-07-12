@@ -4,8 +4,19 @@ class Documento:
         def getText(self):     
             return self.text
         def setText(self, text):        
-            self.text = text    
-        def islnText(self,key):
+            self.text = text
+
+        def ilsnText(self,key):
+            if key in self.text:
+                return True 
+            else:   
+                if key not in self.text:    
+                    return False
+        
+        def setscriviTestonelFile(self,path,key): 
+            file = open(path,"w")
+            file.write(self.getText())
+            file.close()(self,key)
             if key in self.text:
                 return True
             else:   
@@ -56,10 +67,24 @@ class Email(Documento):
             self.nome_percorso=nome_percorso    
             super().__init__(self.leggiTestoDaFile)   
 
-    def leggiTestoDaFile(self): 
+def leggiTestoDaFiledef(self,path): 
+            file = open(path,"w")
+            file.write(self.getText())
+            file.close()
+
+d = Documento()
+d.setText("ciao")
+print(d.getText())
+print(d.islinText("a"))
+e = Email()
+e.setMittente("cuanbellina@alice.it")
+e.setDestinatario("bob@vattelapesca")
+e.setTitolo("cena")
+e.setText("ciao bob vieni stasera a cena fuori?")
+print(e.getText())
         
 
-
+#fare vedere errori a dylan
 
 
 
