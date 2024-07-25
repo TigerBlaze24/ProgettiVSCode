@@ -21,7 +21,7 @@ class Film:
 
 class Azione(Film):
     def __init__(self, id, title):
-        super().init(id, title)
+        super().__init__(id, title)
         self.genere = "Azione"
         self.penale = 3.0
 
@@ -37,7 +37,7 @@ class Azione(Film):
 
 class Commedia(Film):
     def __init__(self, id, title):
-        super().init(id, title)
+        super().__init__(id, title)
         self.genere = "Commedia"
         self.penale = 2.5
 
@@ -53,7 +53,7 @@ class Commedia(Film):
 
 class Drama(Film):
     def __init__(self, id, title):
-        super().init(id, title)
+        super().__init__(id, title)
         self.genere = "Drama"
         self.penale = 2.0
 
@@ -124,3 +124,6 @@ def printRentMovies(self, clientID):
                 print(f"{film.getTitle()} - {genre} -")
         else:
             print(f"Il cliente {clientID} non ha noleggiato alcun film.")
+
+movie_1 = Azione(id="001", title="Mission Impossible")
+movie_2 = Commedia(id="002", title="Un Americano a Roma")
