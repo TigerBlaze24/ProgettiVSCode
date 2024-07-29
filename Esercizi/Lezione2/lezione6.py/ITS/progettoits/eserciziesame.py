@@ -23,7 +23,8 @@ class Lavatrice(Elettrodomestico):
 
     def descrivi_elettrodomestico(self):
       print  (f"Marca: {self.marca}, Modello: {self.modello}, Potenza: {self.potenza}w,Carico massimo: {self.carico_max}kg")
-  
+
+  #da aggiungere le cose per provare la printa(vedi moodle)
 
 
 
